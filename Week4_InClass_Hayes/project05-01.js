@@ -48,7 +48,7 @@ let timeLeft = quizTime;
 
 // Declare the ID for timed commands
 let timeID;
-let qustionList = document.querySelectorAll("div#quiz input");
+let questionList = document.querySelectorAll("div#quiz input");
 // and the node list for questions
 
 
@@ -109,4 +109,3 @@ function checkAnswers() {
    }
    return correctCount;
 }
-
