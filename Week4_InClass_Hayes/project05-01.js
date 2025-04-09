@@ -11,9 +11,7 @@
 */
 
 //declare time variable
-let timeID;
-//declare question list variable
-let qustionList = document.querySelector("div#quiz input");
+
 
 // Constants to set the time given for the quiz in seconds
 // and the correct answers to each quiz question
@@ -25,11 +23,7 @@ let startQuiz = document.getElementById("startquiz");
 let quizClock = document.getElementById("quizclock");
 let overlay = document.getElementById("overlay");
 
-//add onclick event to timeID to enter function
-startQuiz.onclick = function() {
-   //change quizTime to count down
-   let timeID= countdown(overlay, 1000);
-}
+
 
 //countdown function
 function countdown() {
@@ -53,22 +47,48 @@ quizClock.value = quizTime;
 let timeLeft = quizTime;
 
 // Declare the ID for timed commands
+let timeID;
+let qustionList = document.querySelectorAll("div#quiz input");
 // and the node list for questions
 
 
+//add onclick event to timeID to enter function
+startQuiz.onclick = function() {
+   //change quizTime to count down
+   overlay.ClassName="showquiz";
+   timeID=window.setInterval(countdown, 1000);
+}
 
+//countdown function
+function countdown() {
+   //see if time is equal to zero
+   if (timeLeft == 0) {
+      //clear interval
+      clearInterval(timeID);
+      //declare total correct variable
+      let totalCorrect=checkAnswers();
 
+      //check to see if user got 100
+      if (totalCorrect==correctAnswers.length) {
+         window.alert("You got a 100%!")
+         
+      }
+   
 
-
-
-
-
-
-
-
-
-
-
+      else {
+         //change value of timeleft
+         timeLeft=quizTime
+         quizClock.value=timeLeft
+         overlay.className="hidequiz"
+         window.alert("You got " +totalCorrect+ " out of " + 
+            correctAnswers.length + "questions correct")
+         }
+      }
+   else {
+      timeLeft--;
+      quizclock.value=timeLeft;
+   }
+}
 
 
 
